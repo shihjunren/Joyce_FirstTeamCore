@@ -1,0 +1,167 @@
+﻿@model IEnumerable<FirstTeamCore.Models.SelfOrder>
+
+@{
+    ViewData["Title"] = "SelfOrder";
+}
+
+<h1>自選訂單</h1>
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">行程管理:自選</li>
+            <li class="breadcrumb-item active">自選訂單</li>
+        </ol>
+    </nav>
+</div>
+<!-- 索引層end -->
+@using (Html.BeginForm())
+{
+    <p>
+        關鍵字
+        @Html.TextBox("txtKeyword")
+        <input type="submit" value="查詢" class="btn btn-secondary" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.會員.姓名)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.自選訂單編號)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.入住時間)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.退住時間)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.露營天數)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.預計人數)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.營區細項.營區.營區名稱)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.營區細項.活動.活動名稱)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.自選飲食.商品名稱)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.租賃商店.產品名稱)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.租賃商店.單日租金)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.租借總價)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.自選訂單總價)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.評論)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.評分)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.建立人)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.建立時間)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.修改人)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.修改時間)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int coumt = 0;
+            foreach (var item in Model) {
+                coumt++;
+            <tr>
+                <td>
+                    @coumt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.會員.姓名)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.自選訂單編號)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.入住時間)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.退住時間)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.露營天數)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.預計人數)
+                </td>
+                <td>
+                   @Html.DisplayFor(modelItem => item.營區細項.營區.營區名稱)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.營區細項.活動.活動名稱)
+                </td>
+                <td>
+                   @Html.DisplayFor(modelItem => item.自選飲食.商品名稱)
+                </td>
+                <td>
+                   @Html.DisplayFor(modelItem => item.租賃商店.產品名稱)
+                </td>
+                <td>
+                   @Html.DisplayFor(modelItem => item.租賃商店.單日租金)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.租借總價)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.自選訂單總價)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.評論)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.評分)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.建立人)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.建立時間)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.修改人)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.修改時間)
+                </td>*@
+                <td>
+                        @Html.ActionLink("修改", "OrderEdit", new { id=item.自選訂單id }, new { @class="btn btn-success" })  |
+                        @Html.ActionLink("刪除", "OrderDelete", new { id=item.自選訂單id }, new{onclick="return confirm('確定要刪除嗎?')",@class="btn btn-danger"})
+                </td>
+            </tr>
+}}
+    </tbody>
+</table>
